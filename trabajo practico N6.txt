@@ -1,0 +1,209 @@
+﻿Cátedra: 
+
+
+Programación Orientada a Objetos
+
+
+
+
+Año académico:  2025
+
+
+
+
+Equipo docente: Adrian Tournour, Alejandro Perez
+
+
+
+
+Alumnos: Hryhorezuk Micaela, Maidana Alejandra, Rezzonico Brisa, Rodriguez Paula, Cepeda Gonzalo.
+
+
+
+
+Trabajo Práctico Nro 6.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Polimorfismo
+
+
+1. Si una clase contiene algún método abstracto se denomina clase abstracta.
+2. Las clases a partir de las cuales pueden instanciarse como objetos se llaman clases concretas (“piezas flotantes”).
+3. El polimorfismo implica el uso de una variable de superclase para invocar métodos en objetos de superclase y subclase, lo cual nos permite “programar en general”.
+4. Los métodos que no son métodos de interfaz y que no proporcionan implementaciones, deben declararse utilizando la palabra clave abstract.
+5. Al proceso de convertir una referencia almacenada en una variable de una superclase  a un tipo de subclase se le conoce como downcasting
+
+
+Conteste con verdadero o falso a cada una de las siguientes proposiciones; 
+En caso de ser falso, explique por qué. 
+a) Todos los métodos en una clase abstract deben declararse como métodos abstract. Falso
+Porque una clase abstracta puede tener métodos con implementación concreta, no todos tienen que ser abstractos.
+b) No está permitido invocar a un método que sólo pertenece a una subclase, a través de una variable de subclase. Falso
+Si la variable es de tipo subclase, sí podés invocar métodos propios de esa subclase sin problema.
+
+
+c) Si una superclase declara a un método como abstract, una subclase debe implementar a ese método. Verdadero
+
+
+d) Un objeto de una clase que implementa a una interfaz puede considerarse como un objeto de ese tipo de interfaz. Verdadero
+
+
+10.3 Cómo es que el polimorfismo le permite programar "en forma general", en lugar de hacerlo "en forma específica”?? Hable sobre las ventajas clave de la programación "'en forma general"
+El polimorfismo permite que una misma referencia o variable de tipo general como por ejemplo, una superclase o una interfaz, pueda manipular objetos de distintas clases concretas sin necesidad de saber cuál es la clase exacta en tiempo de compilación.
+Ventajas de programar en forma general
+* Menos código repetido: No necesitás escribir funciones separadas para cada tipo concreto. Un método que reciba un Animal sirve para Perro, Gato, Caballo…
+* Mayor flexibilidad y escalabilidad: Si mañana se agrega una nueva subclase (Conejo), no tenés que modificar todo tu programa: basta con que implemente de la interfaz o superclase.
+
+* Menor acoplamiento: El código depende de abstracciones (interfaces o superclases) y no de implementaciones concretas. Esto hace que el sistema sea más fácil de mantener.
+* Facilita el reemplazo y la extensión: Podés cambiar comportamientos o agregar nuevas clases sin tocar el código existente que usa la superclase.
+* Compatibilidad con patrones de diseño: Muchos patrones se basan en programar contra interfaces y usar polimorfismo.
+
+
+
+
+
+ 10.4 ¿Qué son los métodos abstractos? Describa las circunstancias en las que un método abstracto será apropiado.
+Un método abstracto es un método declarado pero no implementado en una clase abstracta o interfaz.
+   * Solo indica la firma (nombre, parámetros, tipo de retorno), pero no contiene código.
+   * Obliga a las clases hijas concretas a proporcionar su propia implementación.
+ Circunstancias en las que es apropiado usar un método abstracto
+Un método abstracto es ideal cuando:
+   1. Querés definir un contrato común
+Todas las subclases deben implementar cierto comportamiento, pero cada una lo hará de forma distinta.
+
+   2. No existe una implementación por defecto que tenga sentido, si el método no puede tener un comportamiento genérico válido en la superclase, se declara abstracto.
+
+   3. Se diseña pensando en el polimorfismo, permite que el código use la referencia de la superclase/interfaz, pero que la ejecución real dependa de la subclase concreta.
+
+   4. Querés forzar consistencia en todas las subclases: Garantiza que todas implementen los métodos clave para que el sistema funcione.
+ 10.5 ¿Cómo es que el polimorfismo fomenta la extensibilidad?
+El polimorfismo fomenta la extensibilidad porque permite agregar nuevas clases y comportamientos al sistema sin modificar el código existente que usa las clases base o interfaces.El polimorfismo te deja extender el sistema añadiendo clases, en vez de editar el código que ya está probado, lo que reduce errores y facilita mantenimiento.
+
+
+
+
+
+
+
+
+
+
+
+
+10.6 Describa cuatro formas en las que podemos asignar referencias de superclases y subclases a variables de los tipos de las superclases y las subclases,
+
+
+Asignar subclase a superclase (upcasting implícito).
+
+
+Perro p = new Perro();
+Animal a = p;   // upcasting
+
+
+
+
+Asignar superclase a subclase (downcasting explícito).
+
+
+Animal a = new Perro();
+Perro p = (Perro) a;  // downcasting
+
+
+
+
+Asignar subclase a subclase (mismo tipo).
+
+
+Perro p1 = new Perro();
+Perro p2 = p1;
+
+
+Asignar superclase a superclase (mismo tipo).
+
+
+Animal a1 = new Animal();
+Animal a2 = a1;
+
+
+
+
+
+
+ 10.7 Compare y contraste las clases abstractas y las interfaces. 
+¿Para qué podría usar una clase abstracta? ¿Para qué podría usar una interfaz?
+
+
+
+
+
+
+Característica
+	Clase abstracta
+	Interfaz
+	Implementación de métodos
+	Puede tener métodos abstractos (sin cuerpo) y métodos concretos (con cuerpo).
+	En Java moderno, puede tener métodos abstractos, default y static, pero originalmente sólo abstractos.
+	Variables/atributos
+	Puede tener atributos de instancia y variables estáticas.
+	Solo puede tener constantes (public static final).
+	Herencia
+	Una clase solo puede extender una clase abstracta (herencia simple).
+	Una clase puede implementar múltiples interfaces (herencia múltiple de tipos).
+	Constructores
+	Puede tener constructor (aunque no se pueda instanciar directamente).
+	No puede tener constructor.
+	Relación semántica
+	Modela una relación "es-un" con comportamiento común y parcialmente implementado.
+	Modela una relación "puede-hacer" o un contrato de comportamiento.
+	Acceso
+	Métodos y atributos pueden tener cualquier modificador de acceso.
+	Todos los métodos abstractos son public por defecto.
+	Uso principal
+	Compartir estado y comportamiento común entre subclases relacionadas.
+	Definir un contrato que pueden adoptar clases no relacionadas en la jerarquía.
+	
+
+ 
+¿Para qué usar una clase abstracta?
+      * Cuando varias clases comparten código y atributos comunes, pero parte del comportamiento debe ser definido por cada subclase.
+
+ ¿Para qué usar una interfaz?
+         * Cuando distintas clases (no necesariamente relacionadas) deben cumplir el mismo contrato.
